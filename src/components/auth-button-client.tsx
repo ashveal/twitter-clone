@@ -6,7 +6,7 @@ import { createClientComponentClient, Session } from '@supabase/auth-helpers-nex
 import { Button } from '@/components/ui/button'
 
 const AuthButtonClient = ({ session }: { session: Session | null }) => {
-  const supabase = createClientComponentClient()
+  const supabase = createClientComponentClient<DatabaseSchema>()
   const router = useRouter()
 
   const handleSignIn = async () => {

@@ -5,7 +5,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import AuthButtonClient from '@/components/auth-button-client'
 
 export default async function LoginPage() {
-  const supabase = createServerComponentClient({ cookies })
+  const supabase = createServerComponentClient<DatabaseSchema>({ cookies })
 
   const {
     data: { session },
