@@ -1,10 +1,4 @@
-export type Json =
-  | string
-  | number
-  | boolean
-  | null
-  | { [key: string]: Json | undefined }
-  | Json[]
+export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
 
 export interface Database {
   public: {
@@ -30,17 +24,17 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "likes_tweet_id_fkey"
-            columns: ["tweet_id"]
-            referencedRelation: "tweets"
-            referencedColumns: ["id"]
+            foreignKeyName: 'likes_tweet_id_fkey'
+            columns: ['tweet_id']
+            referencedRelation: 'tweets'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "likes_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          }
+            foreignKeyName: 'likes_user_id_fkey'
+            columns: ['user_id']
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
         ]
       }
       profiles: {
@@ -64,11 +58,11 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "profiles_id_fkey"
-            columns: ["id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
+            foreignKeyName: 'profiles_id_fkey'
+            columns: ['id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          },
         ]
       }
       tweets: {
@@ -92,11 +86,11 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "tweets_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          }
+            foreignKeyName: 'tweets_user_id_fkey'
+            columns: ['user_id']
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
         ]
       }
     }

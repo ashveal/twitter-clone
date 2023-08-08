@@ -3,6 +3,8 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import AuthButtonClient from './auth-button-client'
 
+export const dynamic = 'force-dynamic'
+
 const AuthButtonServer = async () => {
   const supabase = createServerComponentClient<DatabaseSchema>({ cookies })
   const {
