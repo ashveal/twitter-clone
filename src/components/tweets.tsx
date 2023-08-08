@@ -4,6 +4,9 @@ import { useEffect, experimental_useOptimistic as useOptimistic } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
+import { formatDate } from '@/lib/utils'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Likes from '@/components/likes'
 
 const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
@@ -37,21 +40,34 @@ const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
       .subscribe()
 
     return () => {
-      // channel.unsubscribe()
       supabase.removeChannel(channel)
     }
   }, [supabase, router])
 
   return optimisticTweets.map((tweet) => (
-    <div key={tweet.id}>
-      <div className="flex flex-col">
-        <div className="text-sm">
-          {tweet.author.name} {tweet.author.username}
+    <Card key={tweet.id}>
+      <CardHeader className="py-4">
+        <div className="flex space-x-2">
+          <Avatar>
+            <AvatarImage src={tweet.author.avatar_url} alt="AV" />
+            <AvatarFallback>AV</AvatarFallback>
+          </Avatar>
+          <div>
+            <CardTitle>{tweet.author.name}</CardTitle>
+            <CardDescription>@{tweet.author.username}</CardDescription>
+          </div>
         </div>
-        <div className="font-bold">{tweet.title}</div>
+      </CardHeader>
+      <CardContent className="py-0">
+        <div className="text-md">{tweet.title}</div>
         <Likes tweet={tweet} setOptimisticTweet={setOptimisticTweets} />
-      </div>
-    </div>
+      </CardContent>
+      <CardFooter className="py-4">
+        <time dateTime={tweet.created_at} className="text-light text-sm text-gray-500">
+          {formatDate(tweet.created_at)}
+        </time>
+      </CardFooter>
+    </Card>
   ))
 }
 
