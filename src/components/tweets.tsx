@@ -42,7 +42,7 @@ const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
     }
   }, [supabase, router])
 
-  return tweets.map((tweet) => (
+  return optimisticTweets.map((tweet) => (
     <div key={tweet.id}>
       <div className="flex flex-col">
         <div className="text-sm">
